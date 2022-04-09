@@ -9,5 +9,14 @@ content-type: application/json
     "originURL": "http://www.google.com"
 }
 
+###
+POST http://localhost:5000/shorten HTTP/1.1
+content-type: application/json
+
+{
+    "originURL": "http://www.bitbucket.com",
+    "customURL": "link-do-google"
+}
+
 ####
 GET http://localhost:5000/gWtn5BYnc
