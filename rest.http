@@ -6,8 +6,8 @@ POST http://localhost:5000/shorten HTTP/1.1
 content-type: application/json
 
 {
-    "originURL": "www.google.com"
+    "originURL": "http://www.google.com"
 }
 
 ####
-GET http://localhost:5000/3M1s86Z3C
+GET http://localhost:5000/gWtn5BYnc

@@ -8,24 +8,25 @@ export class URLController {
         const{ originURL } = req.body
         const url = await URLModel.findOne({originURL})
         if (url) {
-            response.json(url)
+            res.json(url)
             return
         } 
         const hash = shortId.generate()
         const shortURL = `${config.API_URL}/${hash}`
         const newURL = await URLModel.create({hash, shortURL, originURL})
 
-        res.json({originURL, hash, shortURL})
+        res.json(newURL)
     }
 
     public async redirect(req: Request, res: Response): Promise<void>{
         const { hash } = req.params
-        const url = {
-            originURL: 'www.github.com',
-            hash: '3M1s86Z3C',
-            shortURL: 'http://localhost:5000/3M1s86Z3C',
+        const url = await URLModel.findOne({ hash })
+        if (url){
+            console.log(url)
+            res.redirect(url.originURL)
+            return
         }
-
-        res.redirect(url.originURL)
+        // res.status(400).json({error: "URL not found"})
+        res.status(400).json(url)
     }
 }
